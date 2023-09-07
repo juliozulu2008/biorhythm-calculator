@@ -1,9 +1,13 @@
 import { IonApp, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import { useState } from 'react';
+import BioRitimoCard from './components/BioRitimoCard';
+
 
 function App() {
+
   const [name, setName] = useState('');
-  const [nascimento, setNascimento] = useState('');
+  const [nascimento, setNascimento] = useState();
+  const [datacalculo, dtaCalculo] = useState();
   return (
     <IonApp>
       <IonHeader>
@@ -22,12 +26,18 @@ function App() {
           <IonItem>
             <IonLabel position="stacked">Nascimento: </IonLabel>
             <IonInput value={nascimento} 
-            onIonChange={(event)=>setNascimento(event.detail.value)}
+            onIonChange={(event)=>setNascimento(event.detail.value)} type='date'
             />
           </IonItem>
-            <p>Seja Bem Vindo <b>{name}</b></p>
-            <p>{nascimento}</p>
+          <IonItem>
+            <IonLabel position="stacked">Data de Calculo: </IonLabel>
+            <IonInput value={datacalculo} 
+            onIonChange={(event)=>dtaCalculo(event.detail.value)} type='date'
+            />
+          </IonItem>
+            
         </IonList>
+        <BioRitimoCard datacalculo={datacalculo}/>
       </IonContent>
     </IonApp>
   );
